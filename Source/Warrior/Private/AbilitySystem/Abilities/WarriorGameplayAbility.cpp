@@ -10,7 +10,7 @@ void UWarriorGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* Act
 
 	if (AbilityActivationPolicy == EWarriorAbilityActivationPolicy::OnGiven)
 	{
-		if (ActorInfo && Spec.IsActive())
+		if (ActorInfo && !Spec.IsActive())
 		{
 			ActorInfo->AbilitySystemComponent->TryActivateAbility(Spec.Handle);
 		}

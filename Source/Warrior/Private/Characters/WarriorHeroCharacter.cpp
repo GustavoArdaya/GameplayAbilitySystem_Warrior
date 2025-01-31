@@ -10,7 +10,7 @@
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include <Components/Input/WarriorInputComponent.h>
 #include "WarriorGameplayTags.h"
-
+#include "DataAssets/StartupData/DataAsset_HeroStartupData.h"
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "WarriorDebugHelper.h"
 
@@ -41,15 +41,12 @@ void AWarriorHeroCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	if (WarriorAbilitySystemComponent && WarriorAttributeSet)
+	if (!CharacterStartupData.IsNull())
 	{
-		const FString ASCText = FString::Printf(
-			TEXT("Owner Actor: %s, AvatarActor: %s"),
-			*WarriorAbilitySystemComponent->GetOwnerActor()->GetActorLabel(),
-			*WarriorAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
-
-		Debug::Print(TEXT("AbilitySystemComponent Valid. ") + ASCText, FColor::Green);
-		Debug::Print(TEXT("AttributeSet Valid. ") + ASCText, FColor::Green);
+		if (UDataAsset_StartupDataBase* LoadedData = CharacterStartupData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
+		}
 	}
 }
 
