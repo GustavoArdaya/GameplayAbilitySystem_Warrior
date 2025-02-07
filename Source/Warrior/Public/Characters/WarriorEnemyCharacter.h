@@ -19,10 +19,16 @@ public:
 
 	AWarriorEnemyCharacter();
 
+	//~ Begin IPawnCombatInterface
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+	//~ End IPawnCombatInterface
+
 protected:
 	//~ Begin APawn Interface.
 	virtual void PossessedBy(AController* NewController) override;
 	//~ End APawn Interface.
+
+	
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
