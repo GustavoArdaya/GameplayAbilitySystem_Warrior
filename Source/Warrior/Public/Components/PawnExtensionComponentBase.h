@@ -21,7 +21,7 @@ protected:
 		return CastChecked<T>(GetOwner());
 	}
 
-	APawn* GetOwnerPawn() const
+	APawn* GetOwningPawn() const
 	{
 		return GetOwningPawn<APawn>();
 	}
