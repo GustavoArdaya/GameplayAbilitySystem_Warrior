@@ -37,7 +37,8 @@ protected:
 	//~ End IPawnCombatInterface
 
 	//~ Begin IPawnUIInterface
-	virtual UPawnUIComponent* GetPawnUIComponent() const;
+	virtual UPawnUIComponent* GetPawnUIComponent() const override;
+	virtual UHeroUIComponent* GetHeroUIComponent() const override;
 	//~ End IPawnUIInterface
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
