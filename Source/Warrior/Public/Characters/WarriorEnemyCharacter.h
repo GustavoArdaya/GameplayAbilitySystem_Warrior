@@ -31,6 +31,7 @@ protected:
 
 	//~ Begin IPawnUIInterface
 	virtual UPawnUIComponent* GetPawnUIComponent() const;
+	virtual UEnemyUIComponent* GetEnemyUIComponent() const;
 	//~ End IPawnUIInterface
 
 
