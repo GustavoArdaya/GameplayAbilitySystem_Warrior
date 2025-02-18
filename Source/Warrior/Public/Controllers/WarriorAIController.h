@@ -21,6 +21,10 @@ public:
 
 	AWarriorAIController(const FObjectInitializer& ObjectInitializer);
 
+	// ~ Begin IGenericTeamAgentInterface
+	virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const;
+	// ~ End IGenericTeamAgentInterface
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
