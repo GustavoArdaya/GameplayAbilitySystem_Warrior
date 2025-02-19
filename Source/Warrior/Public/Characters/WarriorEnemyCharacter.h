@@ -34,8 +34,8 @@ protected:
 	//~ End APawn Interface.
 
 	//~ Begin IPawnUIInterface
-	virtual UPawnUIComponent* GetPawnUIComponent() const;
-	virtual UEnemyUIComponent* GetEnemyUIComponent() const;
+	virtual UPawnUIComponent* GetPawnUIComponent() const override;
+	virtual UEnemyUIComponent* GetEnemyUIComponent() const override;
 	//~ End IPawnUIInterface
 
 
