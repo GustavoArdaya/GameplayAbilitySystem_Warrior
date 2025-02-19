@@ -12,11 +12,6 @@
 AWarriorAIController::AWarriorAIController(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCrowdFollowingComponent>("PathFollowingComponent"))
 {
-	if (UCrowdFollowingComponent* CrowdCmp = Cast<UCrowdFollowingComponent>(GetPathFollowingComponent()))
-	{
-		Debug::Print(TEXT("CrowdFollowingComponent Valid"), FColor::Green);
-	}
-
 	AISenseConfig_Sight = CreateDefaultSubobject<UAISenseConfig_Sight>("EnemySenseConfig_Sight");
 	AISenseConfig_Sight->DetectionByAffiliation.bDetectEnemies = true;
 	AISenseConfig_Sight->DetectionByAffiliation.bDetectFriendlies = false;
@@ -44,6 +39,29 @@ ETeamAttitude::Type AWarriorAIController::GetTeamAttitudeTowards(const AActor& O
     }
     
     return ETeamAttitude::Friendly;
+}
+
+void AWarriorAIController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (UCrowdFollowingComponent* CrowdCmp = Cast<UCrowdFollowingComponent>(GetPathFollowingComponent()))
+	{
+		CrowdCmp->SetCrowdSimulationState(bEnableDetourCrowdAvoidance ? ECrowdSimulationState::Enabled : ECrowdSimulationState::Disabled);
+
+		switch (DetourCrowdAvoidanceQuality)
+		{
+			case 1: CrowdCmp->SetCrowdAvoidanceQuality(ECrowdAvoidanceQuality::Low);	break;
+			case 2: CrowdCmp->SetCrowdAvoidanceQuality(ECrowdAvoidanceQuality::Medium); break;
+			case 3: CrowdCmp->SetCrowdAvoidanceQuality(ECrowdAvoidanceQuality::Good);	break;
+			case 4: CrowdCmp->SetCrowdAvoidanceQuality(ECrowdAvoidanceQuality::High);	break;
+			default: break;
+		}
+
+		CrowdCmp->SetAvoidanceGroup(1);
+		CrowdCmp->SetGroupsToAvoid(1);
+		CrowdCmp->SetCrowdCollisionQueryRange(CollisionQueryRange);
+	}
 }
 
 void AWarriorAIController::OnEnemyPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
