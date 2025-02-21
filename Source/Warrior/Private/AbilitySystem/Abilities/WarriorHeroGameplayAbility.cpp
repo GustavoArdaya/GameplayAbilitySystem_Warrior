@@ -44,6 +44,7 @@ FGameplayEffectSpecHandle UWarriorHeroGameplayAbility::MakeHeroDamageEffectSpecH
         GetAbilityLevel(),
         ContextHandle
     );
+
     EffectSpecHandle.Data->SetSetByCallerMagnitude(
         WarriorGameplayTags::Shared_SetByCaller_BaseDamage,
         InWeaponBaseDamage
