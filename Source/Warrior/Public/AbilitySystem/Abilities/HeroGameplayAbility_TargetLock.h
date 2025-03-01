@@ -25,6 +25,10 @@ private:
 
 	void TryLockOnTarget();
 	void GetAvailableActorsToLock();
+	AActor* GetNearestTargetFromAvailableActors(const TArray<AActor*>& InAvailableActors);
+
+	void CancelTargetLockAbility();
+	void CleanUp();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Target Lock")
 	float BoxTraceDistance = 5000.f;
@@ -40,4 +44,7 @@ private:
 
 	UPROPERTY()
 	TArray<AActor*> AvailableActorsToLock;
+
+	UPROPERTY()
+	AActor* CurrentLockedActor;
 };
