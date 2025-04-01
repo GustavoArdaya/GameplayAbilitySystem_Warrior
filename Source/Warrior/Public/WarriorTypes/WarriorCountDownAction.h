@@ -18,11 +18,13 @@ public:
 		OutputLink(LatentInfo.Linkage),
 		CallbackTarget(LatentInfo.CallbackTarget),
 		ElapsedInterval(0.f),
-		ElapsedTimeSincecStart(0.f)
+		ElapsedTimeSinceStart(0.f)
 	{
 	}
 
 	void CancelAction();
+
+	virtual void UpdateOperation(FLatentResponse& Response) override;
 
 private:
 
@@ -35,5 +37,5 @@ private:
 	int32 OutputLink;
 	FWeakObjectPtr CallbackTarget;
 	float ElapsedInterval;
-	float ElapsedTimeSincecStart;
+	float ElapsedTimeSinceStart;
 };
