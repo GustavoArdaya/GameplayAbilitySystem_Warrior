@@ -38,7 +38,7 @@ protected:
 
 	//~ Begin IPawnUIInterface
 	virtual UPawnUIComponent* GetPawnUIComponent() const override;
-	virtual UHeroUIComponent* GetHeroUIComponent() const override;
+	//virtual UHeroUIComponent* GetHeroUIComponent() const override;
 	//~ End IPawnUIInterface
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -87,4 +87,5 @@ private:
 public:
 
 	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const { return HeroCombatComponent; }
+	FORCEINLINE UHeroUIComponent* GetHeroUIComponent() const { return HeroUIComponent; }
 };
