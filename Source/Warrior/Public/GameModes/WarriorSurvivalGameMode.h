@@ -59,13 +59,14 @@ class WARRIOR_API AWarriorSurvivalGameMode : public AWarriorBaseGameMode
 protected:
 
 	virtual void BeginPlay() override;
-
 	virtual void Tick(float DeltaTime) override;
 
 private:
 
 	void SetCurrentSurvivalGameModeState(EWarriorSurvivalGameModeState InState);
 	bool HasFinishedAllWaves() const;
+	void PreLoadNextWaveEnemies();
+	FWarriorEnemyWaveSpanerTableRow* GetCurrentWaveSpawnerTableRow() const;
 
 
 	UPROPERTY()
@@ -94,5 +95,8 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "WaveDefinition", meta = (AllowPrivateAccess = "true"))
 	float WaveCompletedWaitTime = 5.f;
+
+	UPROPERTY()
+	TMap<TSoftClassPtr<AWarriorEnemyCharacter>, UClass*> PreLoadedEnemyClassMap;
 
 };
