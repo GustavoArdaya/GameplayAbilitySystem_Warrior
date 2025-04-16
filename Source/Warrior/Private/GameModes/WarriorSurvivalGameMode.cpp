@@ -174,9 +174,7 @@ bool AWarriorSurvivalGameMode::ShouldKeepSpawningEnemies() const
 
 void AWarriorSurvivalGameMode::OnEnemyDestroyed(AActor* DestroyedActor)
 {
-	CurrentSpawnedEnemiesCounter--;
-
-	Debug::Print(FString::Printf(TEXT("CurrentSpawnedEnemiesCounter: %i, TotalSpawnedEnemiesThisWaveCounter: %i"), CurrentSpawnedEnemiesCounter, TotalSpawnedEnemiesThisWaveCounter));
+	CurrentSpawnedEnemiesCounter--;	
 
 	if (ShouldKeepSpawningEnemies())
 	{
